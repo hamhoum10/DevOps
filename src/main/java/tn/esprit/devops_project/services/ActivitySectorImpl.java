@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class ActivitySectorImpl implements IActivitySector {
-
+///
     ActivitySectorRepository activitySectorRepository;
     @Override
     public List<ActivitySector> retrieveAllActivitySectors() {
