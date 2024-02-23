@@ -19,7 +19,7 @@ pipeline {
         stage("SonarQube Analysis") {
             steps {
                 script {
-                    mvn 'sonar:sonar' -Dsonar.login=admin -Dsonar.password=0000
+                    mvn 'sonar:sonar -Dsonar.login=admin -Dsonar.password=0000'
                 }
             }
         }
