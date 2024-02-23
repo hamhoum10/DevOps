@@ -20,7 +20,7 @@ pipeline {
         stage('MVN SONARQUBE') {
            steps {
                script {
-                   sh mvn sonar:sonar -Dsonar.login="admin" -Dsonar.password="0000"
+                   sh 'mvn sonar:sonar'
                }
            }
        } 
