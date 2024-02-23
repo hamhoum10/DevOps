@@ -1,20 +1,21 @@
 pipeline {
     agent any
 
-  
-
+    stages {
         stage('Clean') {
             steps {
-                // Execute 'mvn clean' command
-                sh 'mvn clean'
+                script {
+                    sh 'mvn clean'
+                }
             }
         }
 
         stage('Compile') {
             steps {
-                // Execute 'mvn compile' command
-                sh 'mvn compile'
+                script {
+                    sh 'mvn compile'
+                }
             }
         }
     }
-        }
+}
