@@ -17,5 +17,12 @@ pipeline {
                 }
             }
         }
+       stage('MVN SONARQUBE') {
+           steps {
+               script {
+                   mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=0000
+               }
+           }
+       } 
     }
 }
