@@ -16,10 +16,10 @@ pipeline {
                 }
             }
         }
-        stage('MVN SONARQUBE') {
+        stage("SonarQube Analysis") {
             steps {
-                script {
-                    sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=0000'
+                withSonarQubeEnv('0000') {
+                    sh 'mvn sonar:sonar'
                 }
             }
         }
