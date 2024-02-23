@@ -18,8 +18,8 @@ pipeline {
         }
         stage("SonarQube Analysis") {
             steps {
-                withSonarQubeEnv('0000') {
-                    sh 'mvn sonar:sonar'
+                script {
+                    mvn 'sonar:sonar' -Dsonar.login=admin -Dsonar.password=0000
                 }
             }
         }
