@@ -9,7 +9,6 @@ pipeline {
                 }
             }
         }
-
         stage('Compile') {
             steps {
                 script {
@@ -18,11 +17,12 @@ pipeline {
             }
         }
         stage('MVN SONARQUBE') {
-           steps {
-               script {
-                   sh mvn sonar:sonar  -Dsonar.login=admin -Dsonar.password=0000 
-               }
-           }
-       } 
+            steps {
+                script {
+                    sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=0000'
+                }
+            }
+        }
+
     }
 }
