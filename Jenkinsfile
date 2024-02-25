@@ -19,12 +19,14 @@ pipeline {
         }
 
         stage('SonarQube Analysis') {
+            environment {
+                // Define SonarQube server configuration
+                SONARQUBE_HOST = 'http://192.168.127.132:9000/'
+                SONARQUBE_TOKEN = 'sqa_2552c4c26e7488ae3e24692fdda7db64371b6b16'
+            }
             steps {
                 script {
-                    // Assuming SonarQube server configuration is already set up in Jenkins
-                    withSonarQubeEnv('SonarQube_server') {
-                        sh 'mvn sonar:sonar'
-                    }
+                    sh "mvn sonar:sonar -Dsonar.host.url=${env.SONARQUBE_HOST} -Dsonar.login=${env.SONARQUBE_TOKEN}"
                 }
             }
         }
