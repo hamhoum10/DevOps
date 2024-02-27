@@ -21,7 +21,7 @@ pipeline {
         stage('MVN Sonarqube') {
             steps {
                 script {
-                    sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=0000'
+                    sh 'mvn sonar:sonar -Dsonar.host.url=http://192.168.8.135:9000 -Dsonar.token=sqa_de3fed6794743dfc30335b35b6f51a341a27cb97 -Dsonar.projectKey=Devops -Dsonar.projectName=Devops -Dsonar.projectVersion=1.0.0'
                 }
             }
         }
