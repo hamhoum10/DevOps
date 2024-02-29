@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     // Assuming SonarQube server configuration is already set up in Jenkins
-                    withSonarQubeEnv('Sonarqube') {
+                    withSonarQubeEnv('sonarqube') {
                         sh 'mvn sonar:sonar'
                     }
                 }
