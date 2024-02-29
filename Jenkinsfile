@@ -28,7 +28,7 @@ pipeline {
                 }
             }
         }
- stage('SonarQube Analysis') {
+ stage('test') {
             steps {
                 script {
                     sh 'mvn test'
