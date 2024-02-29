@@ -1,6 +1,8 @@
 package tn.esprit.devops_project.services;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import tn.esprit.devops_project.entities.Invoice;
@@ -18,12 +20,14 @@ import java.util.List;
 @Service
 @Slf4j
 @AllArgsConstructor
+@Getter
+@Setter
 public class InvoiceServiceImpl implements IInvoiceService {
 
-	final InvoiceRepository invoiceRepository;
-	final OperatorRepository operatorRepository;
-	final InvoiceDetailRepository invoiceDetailRepository;
-	final SupplierRepository supplierRepository;
+	public InvoiceRepository invoiceRepository;
+	public OperatorRepository operatorRepository;
+	public InvoiceDetailRepository invoiceDetailRepository;
+	public SupplierRepository supplierRepository;
 
 	//commentaire
 	//commentaire 2 developper
