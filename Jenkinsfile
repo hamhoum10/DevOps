@@ -18,10 +18,13 @@ pipeline {
             }
         }
 
-        stage('MVN Sonarqube') {
+        stage('SonarQube Analysis') {
             steps {
                 script {
-                    sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=25059373'
+                    // Assuming SonarQube server configuration is already set up in Jenkins
+                    withSonarQubeEnv('sonarqube') {
+                        sh 'mvn sonar:sonar'
+                    }
                 }
             }
         }
