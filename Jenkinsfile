@@ -28,5 +28,14 @@ pipeline {
                 }
             }
         }
+ stage('SonarQube Analysis') {
+            steps {
+                script {
+                    sh 'mvn test'
+                }
+            }
+ }
+
+        
     }
 }
