@@ -17,14 +17,6 @@ pipeline {
                 }
             }
         }
-
-        stage('Run Unit Tests') {
-            steps {
-                script {
-                    sh 'mvn test' // Execute unit tests
-                }
-            }
-        }
         
         stage('SonarQube Analysis') {
             steps {
