@@ -32,7 +32,7 @@ pipeline {
       steps{
         
         script {
-         sh('npm test')
+         sh 'mvn test'
         }
       }
     }
