@@ -17,6 +17,14 @@ pipeline {
                 }
             }
         }
+        
+        stage('Unit Test') {
+          steps{
+            script {
+             sh 'mvn test'
+            }
+          }
+        }
 
         stage('SonarQube Analysis') {
             steps {
@@ -28,13 +36,5 @@ pipeline {
                 }
             }
         }
-        stage('Unit Test') {
-      steps{
-        
-        script {
-         sh 'mvn test'
-        }
-      }
-    }
     }
 }
