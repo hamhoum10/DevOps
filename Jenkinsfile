@@ -17,16 +17,6 @@ pipeline {
                 }
             }
         }
-        
-        stage('SonarQube Analysis') {
-            steps {
-                script {
-                    withSonarQubeEnv('sonarQube') {
-                        sh 'mvn sonar:sonar'
-                    }
-                }
-            }
-        }
         stage('Unit Test') {
             steps {
                 script {
@@ -34,5 +24,17 @@ pipeline {
                 }
             }
         }
+        
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    withSonarQubeEnv('SonarQube') {
+                        sh 'mvn test jacoco:report'
+                        sh 'mvn sonar:sonar'
+                    }
+                }
+            }
+        }
+        
     }
 }
