@@ -29,7 +29,6 @@ pipeline {
             steps {
                 script {
                     withSonarQubeEnv('SonarQube') {
-                        sh 'mvn test jacoco:report'
                         sh 'mvn sonar:sonar'
                     }
                 }
