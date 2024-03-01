@@ -68,4 +68,6 @@ class OperatorServiceImplTest {
         Operator result = operatorService.retrieveOperator(id);
         assertEquals(operator, result);
     }
+
 }
+
