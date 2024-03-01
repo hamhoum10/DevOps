@@ -23,7 +23,7 @@ pipeline {
                 script {
                     // Assuming SonarQube server configuration is already set up in Jenkins
                     withSonarQubeEnv('SonarQube_server') {
-                        sh 'mvn sonar:sonar'
+                        sh 'mvn sonar:sonar -Pcoverage'
                     }
                 }
             }
