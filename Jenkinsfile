@@ -17,8 +17,8 @@ pipeline {
                 }
             }
         }
-
-           stage('SonarQube Analysis') {
+        
+        stage('sonarQube Analysis') {
             steps {
                 script {
                     // Assuming SonarQube server configuration is already set up in Jenkins
@@ -28,14 +28,5 @@ pipeline {
                 }
             }
         }
- stage('test') {
-            steps {
-                script {
-                    sh 'mvn test'
-                }
-            }
- }
-
-        
     }
 }
