@@ -39,82 +39,64 @@ class InvoiceServiceImplTest {
 
     @Test
     void retrieveAllInvoices() {
-        // Mocking the behavior of the repository
         Mockito.when(invoiceRepository.findAll()).thenReturn(Arrays.asList(new Invoice(), new Invoice()));
 
-        // Testing the method
         List<Invoice> invoices = invoiceService.retrieveAllInvoices();
 
-        // Assertions
         assertEquals(2, invoices.size());
     }
 
     @Test
     void cancelInvoice() {
-        // Mocking the behavior of the repository
         Invoice invoice = new Invoice();
         Mockito.when(invoiceRepository.findById(anyLong())).thenReturn(Optional.of(invoice));
 
-        // Testing the method
         invoiceService.cancelInvoice(1L);
 
-        // Assertions
         Mockito.verify(invoiceRepository).save(invoice);
     }
 
     @Test
     void retrieveInvoice() {
-        // Mocking the behavior of the repository
         Invoice expectedInvoice = new Invoice();
         Mockito.when(invoiceRepository.findById(anyLong())).thenReturn(Optional.of(expectedInvoice));
 
-        // Testing the method
         Invoice actualInvoice = invoiceService.retrieveInvoice(1L);
 
-        // Assertions
         assertEquals(expectedInvoice, actualInvoice);
     }
 
     @Test
     void getInvoicesBySupplier() {
-        // Mocking the behavior of the repository
         Supplier supplier = new Supplier();
         Mockito.when(supplierRepository.findById(anyLong())).thenReturn(Optional.of(supplier));
         Mockito.when(supplier.getInvoices()).thenReturn(new HashSet<>(Arrays.asList(new Invoice(), new Invoice())));
 
-        // Testing the method
         List<Invoice> invoices = invoiceService.getInvoicesBySupplier(1L);
 
-        // Assertions
         assertEquals(2, invoices.size());
     }
 
     @Test
     void assignOperatorToInvoice() {
-        // Mocking the behavior of the repositories
         Invoice invoice = new Invoice();
         Operator operator = new Operator();
         Mockito.when(invoiceRepository.findById(anyLong())).thenReturn(Optional.of(invoice));
         Mockito.when(operatorRepository.findById(anyLong())).thenReturn(Optional.of(operator));
         Mockito.when(operatorRepository.save(any(Operator.class))).thenReturn(operator);
 
-        // Testing the method
         invoiceService.assignOperatorToInvoice(1L, 2L);
 
-        // Assertions
         assertEquals(1, operator.getInvoices().size());
         assertEquals(invoice, operator.getInvoices().iterator().next());
     }
 
     @Test
     void getTotalAmountInvoiceBetweenDates() {
-        // Mocking the behavior of the repository
         Mockito.when(invoiceRepository.getTotalAmountInvoiceBetweenDates(any(Date.class), any(Date.class))).thenReturn(100.0f);
 
-        // Testing the method
         float totalAmount = invoiceService.getTotalAmountInvoiceBetweenDates(new Date(), new Date());
 
-        // Assertions
         assertEquals(100.0f, totalAmount);
     }
 }
