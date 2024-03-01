@@ -28,5 +28,5 @@ public class ActivitySector  implements Serializable {
         @JsonIgnore
         private Set<Supplier> suppliers;
 
-        
+
 }

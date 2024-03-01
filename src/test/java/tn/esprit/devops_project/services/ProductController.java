@@ -1,7 +1,6 @@
 package tn.esprit.devops_project.controllers;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.devops_project.entities.Product;
 import tn.esprit.devops_project.entities.ProductCategory;
@@ -9,14 +8,12 @@ import tn.esprit.devops_project.services.Iservices.IProductService;
 
 import java.util.List;
 
-
+@RestController
 @AllArgsConstructor
 @CrossOrigin(origins = "*")
-@RestController
 public class ProductController {
 
-
-    final IProductService productService;
+    private final IProductService productService;
 
     @PostMapping("/product/{idStock}")
     Product addProduct(@RequestBody Product product,@PathVariable Long idStock){

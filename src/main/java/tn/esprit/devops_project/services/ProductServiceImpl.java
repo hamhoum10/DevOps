@@ -17,8 +17,8 @@ import java.util.List;
 @Slf4j
 public class ProductServiceImpl implements IProductService {
 
-   final ProductRepository productRepository;
-   final StockRepository stockRepository;
+    final ProductRepository productRepository;
+    final StockRepository stockRepository;
 
     @Override
     public Product addProduct(Product product, Long idStock) {

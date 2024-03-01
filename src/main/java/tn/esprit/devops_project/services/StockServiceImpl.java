@@ -12,7 +12,11 @@ import java.util.List;
 @AllArgsConstructor
 public class StockServiceImpl implements IStockService {
 
+<<<<<<< HEAD
    private final StockRepository stockRepository;
+=======
+    public StockRepository stockRepository;
+>>>>>>> origin/master
 
     @Override
     public Stock addStock(Stock stock) {
