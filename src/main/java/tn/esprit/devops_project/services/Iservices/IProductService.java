@@ -7,12 +7,12 @@ import java.util.List;
 
 public interface IProductService {
 
-    Product addProduct(Product product, Long idStock);
-    Product retrieveProduct(Long id);
+    Product addProduct(Product product, long idStock);
+    Product retrieveProduct(long id);
     List<Product> retreiveAllProduct();
     List<Product> retrieveProductByCategory(ProductCategory category);
-    void deleteProduct(Long id);
-    List<Product> retreiveProductStock(Long id);
+    void deleteProduct(long id);
+    List<Product> retreiveProductStock(long id);
 
 
 }

@@ -1,6 +1,9 @@
 package tn.esprit.devops_project.services;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import tn.esprit.devops_project.services.Iservices.IProductService;
@@ -15,20 +18,24 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 @Slf4j
+
+
 public class ProductServiceImpl implements IProductService {
 
-   final ProductRepository productRepository;
-   final StockRepository stockRepository;
+    private ProductRepository productRepository;
+    private StockRepository stockRepository;
 
     @Override
-    public Product addProduct(Product product, Long idStock) {
+    public Product addProduct(Product product, long idStock) {
         Stock stock = stockRepository.findById(idStock).orElseThrow(() -> new NullPointerException("stock not found"));
         product.setStock(stock);
+
+
         return productRepository.save(product);
     }
 
     @Override
-    public Product retrieveProduct(Long id) {
+    public Product retrieveProduct(long id) {
         return productRepository.findById(id).orElseThrow(() -> new NullPointerException("Product not found"));
     }
 
@@ -43,12 +50,12 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
-    public void deleteProduct(Long id) {
+    public void deleteProduct(long id) {
         productRepository.deleteById(id);
     }
 
     @Override
-    public List<Product> retreiveProductStock(Long id) {
+    public List<Product> retreiveProductStock(long id) {
         return productRepository.findByStockIdStock(id);
     }
 }
