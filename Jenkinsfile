@@ -18,20 +18,19 @@ pipeline {
             }
         }
         
-        stage('Unit Test') {
-            steps {
-                script {
-                    sh 'mvn test'
-                }
-            }
-        }
-
         stage('SonarQube Analysis') {
             steps {
                 script {
                     withSonarQubeEnv('sonarqube') {
                         sh 'mvn sonar:sonar'
                     }
+                }
+            }
+        }
+        stage('Unit Test') {
+            steps {
+                script {
+                    sh 'mvn test'
                 }
             }
         }
