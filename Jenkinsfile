@@ -17,12 +17,19 @@ pipeline {
                 }
             }
         }
+        
+        stage('Unit Test') {
+            steps {
+                script {
+                    sh 'mvn test'
+                }
+            }
+        }
 
 <<<<<<< HEAD
         stage('SonarQube Analysis') {
             steps {
                 script {
-                    // Assuming SonarQube server configuration is already set up in Jenkins
                     withSonarQubeEnv('sonarQube') {
 =======
 
