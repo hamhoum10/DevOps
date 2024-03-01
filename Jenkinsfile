@@ -17,29 +17,24 @@ pipeline {
                 }
             }
         }
-
-
-        stage('SonarQube Analysis') {
-            steps {
-                script {
-                    // Assuming SonarQube server configuration is already set up in Jenkins
-                    withSonarQubeEnv('SonarQube') {
-
-                        sh 'mvn sonar:sonar'
-                    }
-                }
-            }
-        }
-
- stage('test') {
+        stage('Unit Test') {
             steps {
                 script {
                     sh 'mvn test'
                 }
             }
- }
+        }
 
-        
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    withSonarQubeEnv('SonarQube') {
+                        sh 'mvn test jacoco:report'
+                        sh 'mvn sonar:sonar'
+                    }
+                }
+            }
+        }
 
     }
 }
