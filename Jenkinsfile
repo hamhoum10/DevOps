@@ -18,6 +18,15 @@ pipeline {
             }
         }
         
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    withSonarQubeEnv('sonarQube') {
+                        sh 'mvn sonar:sonar'
+                    }
+                }
+            }
+        }
         stage('Unit Test') {
             steps {
                 script {
@@ -25,25 +34,5 @@ pipeline {
                 }
             }
         }
-
-<<<<<<< HEAD
-        stage('SonarQube Analysis') {
-            steps {
-                script {
-                    withSonarQubeEnv('sonarQube') {
-=======
-
->>>>>>> 6f2aed737f681b62e968143227b29973b0858238
-                        sh 'mvn sonar:sonar'
-                    }
-                }
-            }
-        }
-<<<<<<< HEAD
-=======
-
-
-        
->>>>>>> 6f2aed737f681b62e968143227b29973b0858238
     }
 }
