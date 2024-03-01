@@ -24,17 +24,17 @@ pipeline {
                 }
             }
         }
-
+        
         stage('SonarQube Analysis') {
             steps {
                 script {
-                    withSonarQubeEnv('SonarQube_server') {
+                    withSonarQubeEnv('sonarqube') {
                         sh 'mvn test jacoco:report'
                         sh 'mvn sonar:sonar'
                     }
                 }
             }
         }
-
+        
     }
 }
