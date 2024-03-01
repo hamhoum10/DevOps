@@ -39,29 +39,4 @@ class ProductServiceImplTest {
         verify(productRepository, times(1)).save(productToAdd);
     }
 
-
-    @Test
-    void retrieveProduct() {
-        // Implement your test for retrieving a product
-    }
-
-    @Test
-    void retreiveAllProduct() {
-        // Implement your test for retrieving all products
-    }
-
-    @Test
-    void retrieveProductByCategory() {
-        // Implement your test for retrieving products by category
-    }
-
-    @Test
-    void deleteProduct() {
-        // Implement your test for deleting a product
-    }
-
-    @Test
-    void retrieveProductStock() {
-        // Implement your test for retrieving product stock
-    }
 }
