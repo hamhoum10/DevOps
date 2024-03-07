@@ -35,6 +35,12 @@ pipeline {
                 }
             }
         }
-        
+        stage('Deploy') {
+            steps {
+                script {
+                    sh 'mvn deploy -DskipTests'
+                }
+            }
+        }
     }
 }
