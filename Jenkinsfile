@@ -5,7 +5,7 @@ pipeline {
         stage('Clean') {
             steps {
                 script {
-                    sh 'npm clean'
+                    sh 'mvn clean'
                 }
             }
         }
@@ -28,7 +28,8 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 script {
-                    withSonarQubeEnv('SonarQube') {
+                    withSonarQubeEnv('sonarqube') {
+                        sh 'mvn test jacoco:report'
                         sh 'mvn sonar:sonar'
                     }
                 }
