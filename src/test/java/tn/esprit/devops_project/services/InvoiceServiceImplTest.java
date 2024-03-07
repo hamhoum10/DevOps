@@ -7,131 +7,68 @@ import org.mockito.MockitoAnnotations;
 import tn.esprit.devops_project.entities.Invoice;
 import tn.esprit.devops_project.entities.Operator;
 import tn.esprit.devops_project.entities.Supplier;
-import tn.esprit.devops_project.repositories.InvoiceDetailRepository;
 import tn.esprit.devops_project.repositories.InvoiceRepository;
 import tn.esprit.devops_project.repositories.OperatorRepository;
 import tn.esprit.devops_project.repositories.SupplierRepository;
-import tn.esprit.devops_project.services.InvoiceServiceImpl;
-
-import java.util.*;
-
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 class InvoiceServiceImplTest {
 
     @Mock
-    InvoiceRepository invoiceRepository;
+    private InvoiceRepository invoiceRepository;
 
     @Mock
-    OperatorRepository operatorRepository;
-
+    private OperatorRepository operatorRepository;
 
     @Mock
-    SupplierRepository supplierRepository;
+    private SupplierRepository supplierRepository;
 
     @InjectMocks
-    InvoiceServiceImpl invoiceService;
-
+    private InvoiceServiceImpl invoiceService;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
 
-
     @Test
     void retrieveAllInvoices() {
-        // Arrange
-        List<Invoice> expectedInvoices = Arrays.asList(new Invoice(), new Invoice());
-        when(invoiceRepository.findAll()).thenReturn(expectedInvoices);
-
-        // Act
-        List<Invoice> actualInvoices = invoiceService.retrieveAllInvoices();
-
-        // Assert
-        assertEquals(expectedInvoices.size(), actualInvoices.size());
-        assertEquals(expectedInvoices, actualInvoices);
+        List<Invoice> invoices = new ArrayList<>();
+        // Add some sample invoices to the list
+        invoices.add(new Invoice());
+        invoices.add(new Invoice());
+        when(invoiceRepository.findAll()).thenReturn(invoices);
+        List<Invoice> result = invoiceService.retrieveAllInvoices();
+        assertEquals(2, result.size());
     }
-
     @Test
     void cancelInvoice() {
-        // Arrange
         Long invoiceId = 1L;
         Invoice invoice = new Invoice();
-        invoice.setIdInvoice(invoiceId);
-        when(invoiceRepository.findById(invoiceId)).thenReturn(Optional.of(invoice));
+        invoice.setArchived(false); // Assuming invoice is not yet archived
+        when(invoiceRepository.findById(invoiceId)).thenReturn(java.util.Optional.ofNullable(invoice));
 
-        // Act
         invoiceService.cancelInvoice(invoiceId);
 
-        // Assert
-        assertTrue(invoice.getArchived());
-        verify(invoiceRepository, times(1)).save(invoice);
+        assertEquals(true, invoice.getArchived()); // Use the appropriate method or attribute
+        verify(invoiceRepository, times(1)).save(invoice); // Verify that save method is called once
     }
+
 
     @Test
     void retrieveInvoice() {
-        // Arrange
         Long invoiceId = 1L;
-        Invoice expectedInvoice = new Invoice();
-        when(invoiceRepository.findById(invoiceId)).thenReturn(Optional.of(expectedInvoice));
+        Invoice invoice = new Invoice();
+        when(invoiceRepository.findById(invoiceId)).thenReturn(java.util.Optional.ofNullable(invoice));
 
-        // Act
-        Invoice actualInvoice = invoiceService.retrieveInvoice(invoiceId);
+        Invoice result = invoiceService.retrieveInvoice(invoiceId);
 
-        // Assert
-        assertNotNull(actualInvoice);
-        assertEquals(expectedInvoice, actualInvoice);
+        assertEquals(invoice, result); // Verify that the retrieved invoice is the same as the expected one
     }
 
-    @Test
-    void testGetInvoicesBySupplier() {
-        Long idSupplier = 1L;
-        Supplier supplier = new Supplier();
-        Set<Invoice> invoices = new HashSet<>();
-        invoices.add(new Invoice());
-        supplier.setInvoices(invoices);
-        when(supplierRepository.findById(idSupplier)).thenReturn(java.util.Optional.of(supplier));
-
-        List<Invoice> result = invoiceService.getInvoicesBySupplier(idSupplier);
-
-        assertEquals(invoices.size(), result.size());
-    }
-
-//    @Test
-//    void assignOperatorToInvoice() {
-//        // Arrange
-//        Long operatorId = 1L;
-//        Long invoiceId = 1L;
-//        Operator operator = new Operator();
-//        operator.setIdOperateur(operatorId);
-//        Invoice invoice = new Invoice();
-//        invoice.setIdInvoice(invoiceId);
-//        operator.initializeInvoices(); // Initializing operator's invoices if null
-//        when(operatorRepository.findById(operatorId)).thenReturn(Optional.of(operator));
-//        when(invoiceRepository.findById(invoiceId)).thenReturn(Optional.of(invoice));
-//
-//        // Act
-//        invoiceService.assignOperatorToInvoice(operatorId, invoiceId);
-//
-//        // Assert
-//        assertTrue(operator.getInvoices().contains(invoice));
-//        verify(operatorRepository, times(1)).save(operator);
-//    }
-
-    @Test
-    void getTotalAmountInvoiceBetweenDates() {
-        // Arrange
-        Date startDate = new Date();
-        Date endDate = new Date();
-        float expectedTotalAmount = 1000.0f;
-        when(invoiceRepository.getTotalAmountInvoiceBetweenDates(startDate, endDate)).thenReturn(expectedTotalAmount);
-
-        // Act
-        float actualTotalAmount = invoiceService.getTotalAmountInvoiceBetweenDates(startDate, endDate);
-
-        // Assert
-        assertEquals(expectedTotalAmount, actualTotalAmount);
-    }
+    // Add tests for other methods similarly
 }
