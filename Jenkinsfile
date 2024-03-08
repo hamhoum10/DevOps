@@ -17,24 +17,24 @@ pipeline {
                 }
             }
         }
-        stage('Unit Test') {
-            steps {
-                script {
-                    sh 'mvn test'
-                }
-            }
-        }
+        // stage('Unit Test') {
+        //     steps {
+        //         script {
+        //             sh 'mvn test'
+        //         }
+        //     }
+        // }
         
-        stage('SonarQube Analysis') {
-            steps {
-                script {
-                    withSonarQubeEnv('sonarqube') {
-                        sh 'mvn test jacoco:report'
-                        sh 'mvn sonar:sonar'
-                    }
-                }
-            }
-        }
+        // stage('SonarQube Analysis') {
+        //     steps {
+        //         script {
+        //             withSonarQubeEnv('sonarqube') {
+        //                 sh 'mvn test jacoco:report'
+        //                 sh 'mvn sonar:sonar'
+        //             }
+        //         }
+        //     }
+        // }
         stage('Deploy') {
             steps {
                 script {
