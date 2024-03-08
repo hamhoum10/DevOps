@@ -17,6 +17,7 @@ pipeline {
                 }
             }
         }
+
         stage('Unit Test') {
             steps {
                 script {
@@ -24,7 +25,7 @@ pipeline {
                 }
             }
         }
-        
+
         stage('SonarQube Analysis') {
             steps {
                 script {
@@ -35,6 +36,13 @@ pipeline {
                 }
             }
         }
-        
+
+        stage('Deploy to Nexus') {
+            steps {
+                script {
+                    sh 'mvn deploy -DskipTests'
+                }
+            }
+        }
     }
 }
