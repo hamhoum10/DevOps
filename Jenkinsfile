@@ -17,13 +17,13 @@ pipeline {
                 }
             }
         }
-        // stage('Unit Test') {
-        //     steps {
-        //         script {
-        //             sh 'mvn test'
-        //         }
-        //     }
-        // }
+        stage('Unit Test') {
+            steps {
+                script {
+                    sh 'mvn test'
+                }
+            }
+        }
         
         // stage('SonarQube Analysis') {
         //     steps {
@@ -35,12 +35,17 @@ pipeline {
         //         }
         //     }
         // }
-        stage('Deploy') {
-            steps {
-                script {
-                    sh 'mvn deploy -DskipTests'
+        // stage('Deploy') {
+        //     steps {
+        //         script {
+        //             sh 'mvn deploy -DskipTests'
+        //         }
+        //     }
+        // }
+            stage('Nexus') {
+                steps {
+                        sh 'mvn deploy -Dmaven.test.skip'
                 }
-            }
-        }
+            }    
     }
 }
