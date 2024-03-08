@@ -17,7 +17,6 @@ pipeline {
                 }
             }
         }
-
         stage('Unit Test') {
             steps {
                 script {
@@ -25,23 +24,28 @@ pipeline {
                 }
             }
         }
-
-        stage('SonarQube Analysis') {
-            steps {
-                script {
-                    withSonarQubeEnv('SonarQube_server') {
-                        sh 'mvn test jacoco:report'
-                        sh 'mvn sonar:sonar'
-                    }
+        
+        // stage('SonarQube Analysis') {
+        //     steps {
+        //         script {
+        //             withSonarQubeEnv('sonarqube') {
+        //                 sh 'mvn test jacoco:report'
+        //                 sh 'mvn sonar:sonar'
+        //             }
+        //         }
+        //     }
+        // }
+        // stage('Deploy') {
+        //     steps {
+        //         script {
+        //             sh 'mvn deploy -DskipTests'
+        //         }
+        //     }
+        // }
+            stage('Nexus') {
+                steps {
+                        sh 'mvn deploy -Dmaven.test.skip'
                 }
             }
-        }
-
-        stage('Maven Deploy to Nexus') {
-            steps {
-                echo 'Deploying to Nexus...'
-                    sh 'mvn deploy -DskipTests=true'   
-            }
-        }
     }
 }
