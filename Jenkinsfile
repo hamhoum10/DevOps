@@ -42,14 +42,27 @@ pipeline {
            }
         }
         
-         stage('Building image') {
+        //  stage('Building image') {
+        //     steps {
+        //         script {
+        //             sh('docker-compose build')
+        //         }
+        //     }
+        // }
+        stage('Build image') {
             steps {
-                script {
-                    sh('docker-compose build')
+                sh 'docker build -t safagrech/devops:1.0.0 .'
+            }
+        }
+        stage('Deploy image') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'dockerHubKey', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+                    sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+                    sh 'docker push hamdikandil10/devops:1.0.0'
                 }
             }
         }
-
+       
         
       
 
