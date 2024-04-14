@@ -49,6 +49,7 @@ pipeline {
         stage('pushing to docker hub') {
             steps {
                 script {
+                    sh('docker login -u nasriamine -p 25059373Hadil')
                     sh('docker tag sha256:1a476676cf6a7c00b695fc96eaf0ab8bdf2c3327d32223e6845dc66ad202ef37 nasriamine/devops:latest')
                     sh('docker push nasriamine/devops:latest')
                 }
