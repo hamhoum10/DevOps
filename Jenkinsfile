@@ -47,10 +47,12 @@ pipeline {
                 }
             }
         }
-         stage('pushing to docker hub') {
+          stage('pushing to docker hub') {
             steps {
                 script {
-                    sh(' docker push 98944696/dev ')
+                    sh('docker login -u 98944696 -p omriyasser')
+                    sh('docker tag sha256:f01c5e66172c66fac893c1bde9bdebe71cf2ed36356b1c0a98571a256f3ebe4f 98944696/dev:latest')
+                    sh('docker push 98944696/dev:latest')
                 }
             }
         }
