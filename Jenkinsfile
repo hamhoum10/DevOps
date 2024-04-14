@@ -40,6 +40,12 @@ pipeline {
         //         }
         //     }
         // }
-        
+        stage('Building image') {
+            steps {
+                script {
+                    sh('docker-compose build')
+                }
+            }
+        }
     }
 }
