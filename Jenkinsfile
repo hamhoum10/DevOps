@@ -42,20 +42,20 @@ pipeline {
               }
         } 
     
-        //stage('Building image') {
-        //    steps {
-        //        script {
-        //            sh('docker-compose build')
-        //        }
-        //    }
-        //}
+        stage('Building image') {
+           steps {
+               script {
+                   sh('docker-compose build')
+               }
+           }
+        }
         
         // stage('pushing to docker hub') {
         //     steps {
         //         script {
-        //             sh('docker login -u nasriamine -p 25059373Hadil')
+        //             sh('docker login -u yassine238 -p 75865852Ya')
         //             sh('docker tag sha256:1a476676cf6a7c00b695fc96eaf0ab8bdf2c3327d32223e6845dc66ad202ef37 nasriamine/devops:latest')
-        //             sh('docker push nasriamine/devops:latest')
+        //             sh('docker push yassine238/devops:latest')
         //         }
         //     }
         // }
@@ -65,6 +65,5 @@ pipeline {
         //         sh 'docker compose up -d --remove-orphans '
         //     }
         // }
-        
     }
 }
