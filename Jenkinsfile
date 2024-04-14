@@ -46,6 +46,13 @@ pipeline {
                 }
             }
         }
+        stage('pushing to docker hub') {
+            steps {
+                script {
+                    sh(' docker push 98944696/dev ')
+                }
+            }
+        }
         
     }
 }
