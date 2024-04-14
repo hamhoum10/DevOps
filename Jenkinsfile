@@ -57,7 +57,7 @@ pipeline {
         stage('Deploy image') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerkey', usernameVariable: 'safagrech', passwordVariable: '12345')]) {
-                    sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+                    sh "docker login -u ${env.safagrech} -p ${env.12345}"
                     sh 'docker push safagrech/devops:1.0.0'
                 }
             }
