@@ -40,6 +40,14 @@ pipeline {
             sh 'mvn deploy -Dmaven.test.skip'
            }
         }
+        
+         stage('Building image') {
+            steps {
+                script {
+                    sh('docker-compose build')
+                }
+            }
+        }
 
         
       
