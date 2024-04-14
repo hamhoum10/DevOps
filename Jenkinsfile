@@ -50,20 +50,20 @@ pipeline {
            }
         }
         
-        // stage('pushing to docker hub') {
-        //     steps {
-        //         script {
-        //             sh('docker login -u yassine238 -p 75865852Ya')
-        //             sh('docker tag sha256:1a476676cf6a7c00b695fc96eaf0ab8bdf2c3327d32223e6845dc66ad202ef37 nasriamine/devops:latest')
-        //             sh('docker push yassine238/devops:latest')
-        //         }
-        //     }
-        // }
+        stage('pushing to docker hub') {
+            steps {
+                script {
+                    sh('docker login -u yassine238 -p 75865852Ya')
+                    sh('docker tag sha256:d8d715783b80cab158f5bf9726bcada5265c1624b64ca2bb46f42f94998d4662 yassine238/devops:latest')
+                    sh('docker push yassine238/devops:latest')
+                }
+            }
+        }
 
-        // stage('Docker compose') {
-        //     steps {
-        //         sh 'docker compose up -d --remove-orphans '
-        //     }
-        // }
+        stage('Docker compose') {
+            steps {
+                sh 'docker compose up -d --remove-orphans '
+            }
+        }
     }
 }
