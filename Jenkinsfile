@@ -23,23 +23,47 @@ pipeline {
                     sh 'mvn test'
                 }
             }
-        }
-        stage('SonarQube Analysis') {
+        }   
+        
+        //stage('SonarQube Analysis') {
+        //    steps {
+        //        script {
+        //            withSonarQubeEnv('SonarQube_server') {
+        //                sh 'mvn test jacoco:report'
+        //                sh 'mvn sonar:sonar'
+        //            }
+        //        }
+        //   }
+        // }
+
+        stage('Nexus') {
+            steps {
+                sh 'mvn deploy -Dmaven.test.skip'
+              }
+        } 
+        
+        stage('Building image') {
             steps {
                 script {
-                    withSonarQubeEnv('SonarQube_server') {
-                        sh 'mvn test jacoco:report'
-                        sh 'mvn sonar:sonar'
-                    }
+                    sh('docker-compose build')
                 }
             }
         }
-        stage('Deploy') {
-            steps {
-                script {
-                    sh 'mvn deploy -DskipTests'
-                }
-            }
-        }
+        // stage('pushing to docker hub') {
+        //     steps {
+        //         script {
+        //             sh('docker login -u nasriamine -p 25059373Hadil')
+        //             sh('docker tag sha256:1a476676cf6a7c00b695fc96eaf0ab8bdf2c3327d32223e6845dc66ad202ef37 nasriamine/devops:latest')
+        //             sh('docker push nasriamine/devops:latest')
+        //         }
+        //     }
+        // }
+
+        // stage('Docker compose') {
+        //     steps {
+        //         sh 'docker compose up -d --remove-orphans '
+        //     }
+        // }
+        
     }
 }
