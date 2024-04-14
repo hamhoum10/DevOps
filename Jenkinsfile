@@ -58,7 +58,7 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerHubKey', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
                     sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-                    sh 'docker push hamdikandil10/devops:1.0.0'
+                    sh 'docker push safagrech/devops:1.0.0'
                 }
             }
         }
