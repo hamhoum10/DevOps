@@ -24,22 +24,22 @@ pipeline {
                 }
             }
         }
-        // stage('SonarQube Analysis') {
-        //     steps {
-        //         script {
-        //             withSonarQubeEnv('SonarQube') {
-        //                 sh 'mvn test jacoco:report'
-        //                 sh 'mvn sonar:sonar'
-        //             }
-        //         }
-        //     }
-        // }
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    withSonarQubeEnv('SonarQube') {
+                        sh 'mvn test jacoco:report'
+                        sh 'mvn sonar:sonar'
+                    }
+                }
+            }
+        }
         
-        //  stage('Nexus') {
-        //  steps {
-        //     sh 'mvn deploy -Dmaven.test.skip'
-        //    }
-        // }
+         stage('Nexus') {
+         steps {
+            sh 'mvn deploy -Dmaven.test.skip'
+           }
+        }
         
          stage('Building image') {
             steps {
