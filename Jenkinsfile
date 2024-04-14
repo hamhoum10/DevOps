@@ -41,14 +41,15 @@ pipeline {
                 sh 'mvn deploy -Dmaven.test.skip'
               }
         } 
+    
+        //stage('Building image') {
+        //    steps {
+        //        script {
+        //            sh('docker-compose build')
+        //        }
+        //    }
+        //}
         
-        stage('Building image') {
-            steps {
-                script {
-                    sh('docker-compose build')
-                }
-            }
-        }
         // stage('pushing to docker hub') {
         //     steps {
         //         script {
