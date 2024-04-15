@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import tn.esprit.devops_project.entities.ActivitySector;
 import tn.esprit.devops_project.services.Iservices.IActivitySector;
 
+import java.util.List;
 
 @RestController
 @AllArgsConstructor
@@ -14,10 +15,8 @@ public class ActivitySectorController {
     IActivitySector activitySectorService;
 
     @GetMapping("/activitySector")
-    String retrieveAllActivitySectors(){
-        return "work run !";
-    //List<ActivitySector>
-        //activitySectorService.retrieveAllActivitySectors();
+    List<ActivitySector> retrieveAllActivitySectors(){
+        return activitySectorService.retrieveAllActivitySectors();
     }
 
     @PostMapping("/activitySector")
