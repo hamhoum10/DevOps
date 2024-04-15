@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   mysqldb:
-    image: mysql:8.0
+    image: mysql:8.3.0
     restart: always
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
@@ -24,11 +24,10 @@ services:
       SPRING_JPA_SHOW_SQL: "true"
       SPRING_JPA_HIBERNATE_DDL_AUTO: "update"
       command: --allow-public-key-retrieval=true
-      volumes:
-        -.m2:/root/.m2
-    ports:
-      - 8082:8082
-
+    volumes:
+      - .m2:/root/.m2
+    stdin_open: true
+    tty: true
 
 volumes:
-  db_data:
+  db:
