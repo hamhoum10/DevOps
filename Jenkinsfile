@@ -76,10 +76,23 @@ pipeline {
             }
         }
         
-        stage('Docker compose') {
+        stage('Docker Compose') {
             steps {
-                sh 'docker compose up -d --remove-orphans '
+                sh 'docker-compose up -d'
             }
         }
+    } // End of stages block
+    
+    post {
+        always {
+            echo 'Cleaning up...'
+            cleanWs() // Clean workspace after build
+        }
+        success {
+            echo 'Build succeeded!'
+        }
+        failure {
+            echo 'Build failed!'
+        }
     }
-}
+} // End of pipeline block
