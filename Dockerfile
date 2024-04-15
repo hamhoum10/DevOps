@@ -1,6 +1,6 @@
 FROM openjdk:17-alpine
 RUN apk add --no-cache curl
 EXPOSE 8082
-RUN curl -o app.jar http://192.168.1.14:8081/repository/maven-releases/tn/esprit/DevOps_Project/2.1/DevOps_Project-2.1.jar
+RUN curl -o app.jar http://admin:nexus@192.168.1.14:8081/#browse/browse:maven-releases:tn%2Fesprit%2FDevOps_Project%2F2.1%2FDevOps_Project-2.1.jar
 WORKDIR /
 ENTRYPOINT ["java", "-jar", "app.jar"]
