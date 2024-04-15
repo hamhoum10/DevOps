@@ -55,10 +55,11 @@ pipeline {
         //         }
         //     }
         // }
-        stage('Building image') {
+       stage('Building Docker Image') {
             steps {
                 script {
-                    sh('docker-compose build')
+                    // Build the Docker image using the Dockerfile in the current directory
+                    sh 'docker build -t nasriamine/devopsnew:latest .'
                 }
             }
         }
