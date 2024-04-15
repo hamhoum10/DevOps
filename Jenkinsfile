@@ -41,14 +41,6 @@ pipeline {
             sh 'mvn deploy -Dmaven.test.skip'
            }
         }
-        
-        //  stage('Building image') {
-        //     steps {
-        //         script {
-        //             sh('docker-compose build')
-        //         }
-        //     }
-        // }
         stage('Build image') {
             steps {
                 sh 'docker build -t safagrech/devops:1.0.0 .'
@@ -69,8 +61,6 @@ pipeline {
             }
         }
        
-        
-      
 
     }
 }
