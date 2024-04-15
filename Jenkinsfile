@@ -72,9 +72,9 @@ pipeline {
             }
         }
 
-            stage('Docker compose') {
+        stage('Docker Compose') {
             steps {
-                sh 'docker compose up -d --remove-orphans '
+                sh 'docker-compose up -d'
             }
         }
 
