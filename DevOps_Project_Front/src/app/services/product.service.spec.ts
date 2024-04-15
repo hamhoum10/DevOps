@@ -24,7 +24,13 @@ describe('ProductService', () => {
   });
 
   it('should fetch all data', () => {
-    const dummyData = [{ /* Dummy data here */ }];
+    const dummyData = [{
+      "idProduct": 1,
+      "title": "Laptop",
+      "price": 999.99,
+      "quantity": 10,
+      "category": "ELECTRONICS"
+  }];
 
     service.fetchAllData().subscribe(data => {
       expect(data).toEqual(dummyData);
@@ -36,8 +42,11 @@ describe('ProductService', () => {
   });
 
   it('should fetch data by ID', () => {
-    const dummyId = '123';
-    const dummyData = { /* Dummy data here */ };
+    const dummyId = '1';
+    const dummyData = { "title": "Laptop",
+    "price": 999.99,
+    "quantity": 10,
+    "category": "ELECTRONICS" };
 
     service.fetchData(dummyId).subscribe(data => {
       expect(data).toEqual(dummyData);
@@ -49,8 +58,14 @@ describe('ProductService', () => {
   });
 
   it('should fetch data by category', () => {
-    const dummyCategory = 'electronics';
-    const dummyData = [{ /* Dummy data here */ }];
+    const dummyCategory = 'ELECTRONICS';
+    const dummyData = [{
+      "idProduct": 1,
+      "title": "Laptop",
+      "price": 999.99,
+      "quantity": 10,
+      "category": "ELECTRONICS"
+  }];
 
     service.fetchDataByCategory(dummyCategory).subscribe(data => {
       expect(data).toEqual(dummyData);
@@ -62,7 +77,10 @@ describe('ProductService', () => {
   });
 
   it('should add product', () => {
-    const dummyProduct = { /* Dummy product data here */ };
+    const dummyProduct = { "title": "Laptfffop",
+    "price": 9979.99,
+    "quantity": 11,
+    "category": "ELECTRONICS" };
     const dummyIdStock = '456';
     const dummyResponse = { /* Dummy response data here */ };
 

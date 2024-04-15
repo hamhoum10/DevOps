@@ -9,6 +9,20 @@ pipeline {
                 }
             }
         }
+         stage('npm install ') {
+                    steps {
+                        script {
+                            sh 'npm i'
+                        }
+                    }
+                }
+                stage('npm build') {
+                                    steps {
+                                        script {
+                                            sh 'npm build'
+                                        }
+                                    }
+                                }
 
         stage('Compile') {
             steps {
