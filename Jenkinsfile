@@ -66,7 +66,7 @@ pipeline {
             steps {
                 script {
                     sh('docker login -u nasriamine -p 25059373Hadil')
-                    sh('docker tag sha256:fdea8086975da27ae3d48c400133a96fe8bbc2215159d1dc7352dfb647f921fb nasriamine/devopsnew:latest')
+                    sh('docker tag sha256:4aadbe1c7333d3bf24daad8cc3a914aa5f120f4660e27b65d6b5beff197656f8 nasriamine/devopsnew:latest')
                     sh('docker push nasriamine/devopsnew:latest')
                 }
             }
