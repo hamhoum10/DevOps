@@ -55,13 +55,13 @@ pipeline {
             }
         }
          stage('Deploy image') {
-            steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerkey', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-                    sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-                    sh 'docker push safagrech/devops:1.0.0'
-                }
-            }
+    steps {
+        withCredentials([usernamePassword(credentialsId: 'dockerkey', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+            sh "echo ${env.dockerHubPassword} | docker login -u ${env.dockerHubUser} --password-stdin"
+            sh 'docker push safagrech/devops:1.0.0'
         }
+    }
+}
          stage('Docker compose') {
             steps {
                 sh 'docker compose up -d --remove-orphans '
