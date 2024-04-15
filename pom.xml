@@ -34,7 +34,6 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.30</version>
             <optional>true</optional>
         </dependency>
         <dependency>
@@ -52,7 +51,25 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+<<<<<<< HEAD
 
+=======
+        <dependency>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.8.11</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+>>>>>>> dc4b61fe93b4292a4309ee999737dca673cd7ca2
     </dependencies>
 
     <build>
@@ -60,7 +77,11 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
+<<<<<<< HEAD
 
+=======
+                <version>0.8.11</version>
+>>>>>>> dc4b61fe93b4292a4309ee999737dca673cd7ca2
                 <executions>
                     <execution>
                         <id>prepare-agent</id>
@@ -89,6 +110,7 @@
                     </excludes>
                 </configuration>
             </plugin>
+<<<<<<< HEAD
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -103,8 +125,17 @@
                     </execution>
                 </executions>
             </plugin>
+=======
+>>>>>>> dc4b61fe93b4292a4309ee999737dca673cd7ca2
         </plugins>
 
     </build>
+         <distributionManagement>
+<repository>
+<id>maven-releases</id>
+<name>Devops</name>
+<url>http://192.168.178.128:8081/repository/maven-releases/</url>
+</repository>
+</distributionManagement>
 
 </project>
