@@ -2,6 +2,33 @@ pipeline {
     agent any
 
     stages {
+
+stage('Build front') {
+    
+            steps {
+               
+                sh 'npm install'
+                sh 'npm run build'
+            }
+        }
+stage('Build Docker Image front') {
+            steps {
+                
+                script {
+                    docker.build('98944696/angular-app',"/DevOps_Project_Front")
+                }
+            }
+        }
+        stage('Push to Docker Hub front') {
+            steps {
+                script {
+                    sh('docker login -u 98944696 -p omriyasser')
+        //             sh('docker tag sha256:f01c5e66172c66fac893c1bde9bdebe71cf2ed36356b1c0a98571a256f3ebe4f 98944696/angular-app:latest')
+                    sh('docker push 98944696/angular-app:latest')
+                }
+            }
+
+
         stage('Clean') {
             steps {
                 script {
