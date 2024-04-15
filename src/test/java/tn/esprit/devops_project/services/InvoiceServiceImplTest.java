@@ -85,41 +85,6 @@ class InvoiceServiceImplTest {
         assertEquals(expectedInvoice, actualInvoice);
     }
 
-//    @Test
-//    void testGetInvoicesBySupplier() {
-//        Long idSupplier = 1L;
-//        Supplier supplier = new Supplier();
-//        Set<Invoice> invoices = new HashSet<>();
-//        invoices.add(new Invoice());
-//        supplier.setInvoices(invoices);
-//        when(supplierRepository.findById(idSupplier)).thenReturn(java.util.Optional.of(supplier));
-//
-//        List<Invoice> result = invoiceService.getInvoicesBySupplier(idSupplier);
-//
-//        assertEquals(invoices.size(), result.size());
-//    }
-
-//    @Test
-//    void assignOperatorToInvoice() {
-//        // Arrange
-//        Long operatorId = 1L;
-//        Long invoiceId = 1L;
-//        Operator operator = new Operator();
-//        operator.setIdOperateur(operatorId);
-//        Invoice invoice = new Invoice();
-//        invoice.setIdInvoice(invoiceId);
-//       // operator.initializeInvoices(); // Initializing operator's invoices if null
-//        when(operatorRepository.findById(operatorId)).thenReturn(Optional.of(operator));
-//        when(invoiceRepository.findById(invoiceId)).thenReturn(Optional.of(invoice));
-//
-//        // Act
-//        invoiceService.assignOperatorToInvoice(operatorId, invoiceId);
-//
-//        // Assert
-//        assertTrue(operator.getInvoices().contains(invoice));
-//        verify(operatorRepository, times(1)).save(operator);
-//    }
-
     @Test
     void getTotalAmountInvoiceBetweenDates() {
         // Arrange
