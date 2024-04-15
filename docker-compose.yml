@@ -24,7 +24,7 @@ services:
             "spring.datasource.username": "root",
             "spring.datasource.password": "",
             "spring.jpa.hibernate.ddl-auto": "update",
-            "spring.jpa.show-sql"="true"
+            "spring.jpa.show-sql": "true"
           }'
       command: --allow-public-key-retrieval=true
 
