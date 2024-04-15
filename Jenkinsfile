@@ -54,7 +54,7 @@ pipeline {
             steps {
                 script {
                     sh('docker login -u yassine238 -p 75865852Ya')
-                    sh('docker tag sha256:4e37b4db4f250c4650de5bff0612d362b78defed8910f781f657da46b32d486d yassine238/devops:latest')
+                    sh('docker tag sha256:282871d951d0a5593ca752f0b0f46dbe9aad0eb06565961cc8bf4e8fcb285fcb yassine238/devops:latest')
                     sh('docker push yassine238/devops:latest')
                 }
             }
