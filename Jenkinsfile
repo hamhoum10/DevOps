@@ -3,30 +3,30 @@ pipeline {
 
     stages {
 
-stage('Build front') {
+// stage('Build front') {
     
-            steps {
+//             steps {
                
-                sh 'npm install'
-                sh 'npm run build'
-            }
-        }
-stage('Build Docker Image front') {
-            steps {
+//                 sh 'npm install'
+//                 sh 'npm run build'
+//             }
+//         }
+// stage('Build Docker Image front') {
+//             steps {
                 
-                script {
-                    docker.build('98944696/angular-app',"/DevOps_Project_Front")
-                }
-            }
-        }
-        stage('Push to Docker Hub front') {
-            steps {
-                script {
-                    sh('docker login -u 98944696 -p omriyasser')
-        //             sh('docker tag sha256:f01c5e66172c66fac893c1bde9bdebe71cf2ed36356b1c0a98571a256f3ebe4f 98944696/angular-app:latest')
-                    sh('docker push 98944696/angular-app:latest')
-                }
-            }
+//                 script {
+//                     docker.build('98944696/angular-app',"/DevOps_Project_Front")
+//                 }
+//             }
+//         }
+//         stage('Push to Docker Hub front') {
+//             steps {
+//                 script {
+//                     sh('docker login -u 98944696 -p omriyasser')
+//         //             sh('docker tag sha256:f01c5e66172c66fac893c1bde9bdebe71cf2ed36356b1c0a98571a256f3ebe4f 98944696/angular-app:latest')
+//                     sh('docker push 98944696/angular-app:latest')
+//                 }
+//             }
 
 
         stage('Clean') {
@@ -36,20 +36,20 @@ stage('Build Docker Image front') {
                 }
             }
         }
-         stage('npm install ') {
-                    steps {
-                        script {
-                            sh 'npm i'
-                        }
-                    }
-                }
-                stage('npm build') {
-                                    steps {
-                                        script {
-                                            sh 'npm build'
-                                        }
-                                    }
-                                }
+         // stage('npm install ') {
+         //            steps {
+         //                script {
+         //                    sh 'npm i'
+         //                }
+         //            }
+         //        }
+                // stage('npm build') {
+                //                     steps {
+                //                         script {
+                //                             sh 'npm build'
+                //                         }
+                //                     }
+                //                 }
 
         stage('Compile') {
             steps {
@@ -85,6 +85,21 @@ stage('Build Docker Image front') {
             steps {
                 script {
                     sh('docker-compose build')
+                }
+            }
+        }
+         stage('Remove Old Docker Containers') {
+            steps {
+                script {
+                    try {
+                        // Remove the old Docker containers if they exist
+                        sh 'docker stop devops-app-1 devops-mysqldb-1 || true'
+                        sh 'docker rm devops-app-1 devops-mysqldb-1 || true'
+                    } catch (Exception e) {
+                        echo "Error occurred while removing old Docker containers: ${e.message}"
+                        currentBuild.result = 'FAILURE'
+                        error("Failed to remove old Docker containers")
+                    }
                 }
             }
         }
