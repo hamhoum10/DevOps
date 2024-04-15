@@ -24,6 +24,22 @@ pipeline {
                 }
             }
         }
+        stage('Remove Old Docker Containers') {
+    steps {
+        script {
+            try {
+                // Remove the old Docker containers if they exist
+                sh 'docker stop devops_mohsen_app_1 devops_mohsen_mysqldb_1 || true'
+                sh 'docker rm devops_mohsen_app_1 devops_mohsen_mysqldb_1 || true'
+            } catch (Exception e) {
+                echo "Error occurred while removing old Docker containers: ${e.message}"
+                currentBuild.result = 'FAILURE'
+                error("Failed to remove old Docker containers")
+            }
+        }
+    }
+}
+
         stage('Nexus') {
       steps {
         sh 'mvn deploy -Dmaven.test.skip'
