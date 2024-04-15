@@ -54,10 +54,10 @@ pipeline {
                 sh 'docker build -t safagrech/devops:1.0.0 .'
             }
         }
-        stage('Deploy image') {
+         stage('Deploy image') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerkey', usernameVariable: 'safagrech', passwordVariable: '12345')]) {
-                    sh "docker login -u ${env.safagrech} -p ${env.12345}"
+                withCredentials([usernamePassword(credentialsId: 'dockerkey', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+                    sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
                     sh 'docker push safagrech/devops:1.0.0'
                 }
             }
