@@ -1,4 +1,4 @@
-FROM openjdk:18
+FROM openjdk:17-alpine
 RUN apk add --no-cache curl
 EXPOSE 8082
 RUN wget -o app.jar http://admin:admin@192.168.127.132:8081/repository/maven-releases/tn/esprit/DevOps_Project/2.1/DevOps_Project-2.1.jar
