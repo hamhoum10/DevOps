@@ -54,14 +54,15 @@ pipeline {
                 sh 'docker build -t safagrech/devops:1.0.0 .'
             }
         }
-         stage('Deploy image') {
-    steps {
-        withCredentials([usernamePassword(credentialsId: 'dockerkey', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-            sh "echo ${env.dockerHubPassword} | docker login -u ${env.dockerHubUser} --password-stdin"
-            sh 'docker push safagrech/devops:1.0.0'
+        stage('pushing to docker hub') {
+            steps {
+                script {
+                    sh('docker login -u safagrech -p @95371625Aa')
+                    sh('docker tag sha256:15f6fdc3fe63910c402bf0a9f3db022dfde28db1292eaaa0cae25b0a57b12316 safagrech/devops:1.0.0')
+                    sh('docker push safagrech/devops:1.0.0')
+                }
+            }
         }
-    }
-}
          stage('Docker compose') {
             steps {
                 sh 'docker compose up -d --remove-orphans '
