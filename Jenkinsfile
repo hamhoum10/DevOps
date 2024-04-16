@@ -43,8 +43,8 @@ pipeline {
         // }
      stage('Build image') {
             steps {
-                // sh 'docker build -t safagrech/devops:1.0.0 .'
-                sh('docker-compose build')
+                sh 'docker build -t safagrech/devops:1.0.0 .'
+                // sh('docker-compose build')
             }
         }
          stage('pushing to docker hub') {
@@ -73,7 +73,7 @@ pipeline {
         }
             stage('Docker Compose') {
                         steps {
-                  sh 'docker-compose up -d'
+                  sh 'docker compose up -d --remove-orphans '
             }
                     }
                 } 
