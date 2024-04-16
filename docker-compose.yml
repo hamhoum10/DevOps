@@ -5,18 +5,18 @@ services:
     image: mysql:8.0
     restart: always
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
-      MYSQL_USER: "root"
-      MYSQL_DATABASE: "devops"
+      - MYSQL_ROOT_PASSWORD=
+      - MYSQL_DATABASE=devops
     ports:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
 
   app:
-    build: .
+    build: ./
     depends_on:
       - mysqldb
+    image: safagrech/devops:1.0.0
     restart: always
     environment:
       SPRING_APPLICATION_JSON: '{
@@ -30,6 +30,8 @@ services:
 
       volumes:
         -.m2:/root/.m2
+      stdin_open: true
+      tty: true
 
     ports:
       - 8082:8082
