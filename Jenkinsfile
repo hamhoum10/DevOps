@@ -117,17 +117,6 @@ pipeline {
                 sh 'docker compose up -d  '
             }
         }
-         post {
-        always {
-            echo 'Cleaning up...'
-            cleanWs() // Clean workspace after build
-        }
-        success {
-            echo 'Build succeeded!'
-        }
-        failure {
-            echo 'Build failed!'
-        }
     }
-    }
+    
 }
