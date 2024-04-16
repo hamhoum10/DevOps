@@ -28,19 +28,20 @@ pipeline {
 
         stage('Nexus') {
       steps {
-        sh 'mvn deploy -Dmaven.test.skip'
+          echo "nexus"
+        // sh 'mvn deploy -Dmaven.test.skip'
       }
     }
-        // stage('SonarQube Analysis') {
-        //     steps {
-        //         script {
-        //             withSonarQubeEnv('sonarqube') {
-        //                 sh 'mvn test jacoco:report'
-        //                 sh 'mvn sonar:sonar'
-        //             }
-        //         }
-        //     }
-        // }
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    withSonarQubeEnv('sonarqube') {
+                        sh 'mvn test jacoco:report'
+                        sh 'mvn sonar:sonar'
+                    }
+                }
+            }
+        }
     stage('Building image') {
             steps {
                 script {
