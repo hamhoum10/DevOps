@@ -29,8 +29,8 @@ pipeline {
         script {
             try {
                 // Remove the old Docker containers if they exist
-                sh 'docker stop  devops-app mysql:8.3.0 || true'
-                sh 'docker rm  devops-app mysql:8.3.0 || true'
+                sh 'docker stop  devops-app || true'
+                sh 'docker rm  devops-app  || true'
             } catch (Exception e) {
                 echo "Error occurred while removing old Docker containers: ${e.message}"
                 currentBuild.result = 'FAILURE'
