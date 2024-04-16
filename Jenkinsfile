@@ -28,7 +28,7 @@ pipeline {
         //stage('SonarQube Analysis') {
         //    steps {
         //        script {
-        //            withSonarQubeEnv('SonarQube_server') {
+        //            withSonarQubeEnv('SonarQube_Jenkins') {
         //                sh 'mvn test jacoco:report'
         //                sh 'mvn sonar:sonar'
         //            }
