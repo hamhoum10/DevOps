@@ -54,25 +54,47 @@ pipeline {
         //    }
         // }
         
-        stage('Docker Build and Push') {
+        
+        stage('Building image') {
            steps {
-               catchError {
-                   echo 'Building Docker image...'
-                   sh 'docker build -t yassine238/devops_frontend:latest .'
-                   echo 'Logging in to Docker Hub...'
-                   sh 'docker login -u yassine238 -p 75865852Ya'
-                   echo 'Pushing Docker image to Docker Hub...'
-                   sh 'docker push yassine238/devops_frontend:latest'
+               script {
+                   sh('docker-compose build')
                }
            }
         }
         
-        // stage('Docker Compose') {
-        //    steps {
-        //        catchError {
-        //            sh 'docker-compose up -d'
-        //        }
-        //    }
-        // }
+        stage('pushing to docker hub') {
+            steps {
+                script {
+                    sh('docker login -u yassine238 -p 75865852Ya')
+                    sh('docker tag sha256:d1f2611bb1a1969309f5f8c6d84dd90b6d7cac4e2593e42e40459cb996273903 yassine238/devops_frontend:latest')
+                    sh('docker push yassine238/devops_frontend:latest')
+                }
+            }
+        }
+
+        stage('Remove Old Docker Containers') {
+            steps {
+                script {
+                    try {
+                        // Remove the old Docker containers if they exist
+                        sh 'docker stop frontend_container || true'
+                        sh 'docker rm frontend_container || true'
+                    } catch (Exception e) {
+                        echo "Error occurred while removing old Docker containers: ${e.message}"
+                        currentBuild.result = 'FAILURE'
+                        error("Failed to remove old Docker containers")
+                    }
+                }
+            }
+        }
+      
+        stage('Docker Compose') {
+           steps {
+               catchError {
+                   sh 'docker-compose up -d'
+               }
+           }
+        }
     }
 }
