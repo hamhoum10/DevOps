@@ -103,7 +103,7 @@
         <repository>
             <id>maven-releases</id>
             <name>admin</name>
-            <url>http://192.168.8.135:8081/repository/maven-releases/</url>
+            <url>http://192.168.8.135:8081/repository/maven-releases</url>
         </repository>
     </distributionManagement>
 
