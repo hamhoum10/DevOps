@@ -55,20 +55,33 @@ pipeline {
         // }
         
         
-        stage('Building image') {
-           steps {
-               script {
-                   sh('docker-compose build')
-               }
-           }
-        }
+        // stage('Building image') {
+        //    steps {
+        //        script {
+        //            sh('docker-compose build')
+        //        }
+        //    }
+        // }
         
-        stage('pushing to docker hub') {
+        // stage('pushing to docker hub') {
+        //     steps {
+        //         script {
+        //             sh('docker login -u yassine238 -p 75865852Ya')
+        //             sh('docker tag sha256:4ecfcf41c34259a2adbd91b9ad521b51d9f38f66c2880f9a1bec2bbd3956efc6 yassine238/devops_frontend:latest')
+        //             sh('docker push yassine238/devops_frontend:latest')
+        //         }
+        //     }
+        // }
+
+      stage('Docker Build and Push') {
             steps {
-                script {
-                    sh('docker login -u yassine238 -p 75865852Ya')
-                    sh('docker tag sha256:4ecfcf41c34259a2adbd91b9ad521b51d9f38f66c2880f9a1bec2bbd3956efc6 yassine238/devops_frontend:latest')
-                    sh('docker push yassine238/devops_frontend:latest')
+                catchError {
+                    echo 'Building Docker image...'
+                    sh 'docker build -t yassine238/devops_frontend:latest'
+                    echo 'Logging in to Docker Hub...'
+                    sh 'docker login -u yassine238 -p 75865852Ya'
+                    echo 'Pushing Docker image to Docker Hub...'
+                    sh 'docker push yassine238/devops_frontend:latest'
                 }
             }
         }
