@@ -5,9 +5,8 @@ services:
     image: mysql:8.0
     restart: always
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
-      MYSQL_USER: "root"
-      MYSQL_DATABASE: "devops"
+      - MYSQL_ROOT_PASSWORD="" 
+      - MYSQL_DATABASE = devops
     ports:
       - "3306:3306"
     volumes:
@@ -17,10 +16,12 @@ services:
     build: .
     depends_on:
       - mysqldb
+    build: ./
+    image: safagrech/devops:1.0.0
     restart: always
     environment:
       SPRING_APPLICATION_JSON: '{
-        "spring.datasource.url": "jdbc:mysql://mysqldb:3306/devops?createDatabaseIfNotExist=true",
+        "spring.datasource.url": "jdbc:mysql://mysqldb:3306/devops?useSSL=false",
             "spring.datasource.username": "root",
             "spring.datasource.password": "",
             "spring.jpa.hibernate.ddl-auto": "update",
@@ -30,7 +31,8 @@ services:
 
       volumes:
         -.m2:/root/.m2
-
+      stdin_open: true
+      tty: true
     ports:
       - 8082:8082
 
