@@ -52,8 +52,8 @@ pipeline {
             steps {
                 script {
                     sh('docker login -u 98944696 -p omriyasser')
-                    sh('docker tag sha256:9d21ad6d5203f15a55ef3ab097d95ebd1aecc0b7fdb3367980de2cd321c02b63 98944696/de:latest')
-                    sh('docker push 98944696/de:latest')
+                    sh('docker tag sha256:9d21ad6d5203f15a55ef3ab097d95ebd1aecc0b7fdb3367980de2cd321c02b63 98944696/devops:latest')
+                    sh('docker push 98944696/devops:latest')
                 }
             }
         }
@@ -62,8 +62,8 @@ pipeline {
                 script {
                     try {
                         // Remove the old Docker containers if they exist
-                          sh 'docker stop devops-app-1 devops-mysqldb-1 || true'
-                        sh 'docker rm devops-app-1 devops-mysqldb-1 || true'
+                          sh 'docker stop devops-app-1 mysql:8.3.0 || true'
+                        sh 'docker rm devops-app-1 mysql:8.3.0 || true'
                     } catch (Exception e) {
                         echo "Error occurred while removing old Docker containers: ${e.message}"
                         currentBuild.result = 'FAILURE'
