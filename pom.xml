@@ -105,7 +105,7 @@
 <repository>
 <id>deploymentRepo</id>
 <name>Nexus Repository</name>
-<url>http://192.168.1.54:9091/repository/maven-releases/</url>
+<url>http://192.168.1.54:1235/repository/maven-releases/</url>
 </repository>
 </distributionManagement>
 
