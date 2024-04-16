@@ -36,11 +36,11 @@ pipeline {
       //       }
       //   }
         
-         stage('Nexus') {
-         steps {
-            sh 'mvn deploy -Dmaven.test.skip'
-           }
-        }
+        //  stage('Nexus') {
+        //  steps {
+        //     sh 'mvn deploy -Dmaven.test.skip'
+        //    }
+        // }
         stage('Build image') {
             steps {
                 sh 'docker build -t safagrech/devops:1.0.0 .'
