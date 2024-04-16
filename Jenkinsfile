@@ -78,8 +78,8 @@ pipeline {
                 script {
                     try {
                         // Remove the old Docker containers if they exist
-                        sh 'docker stop frontend_container || true'
-                        sh 'docker rm frontend_container || true'
+                        sh 'docker stop devopsfrontend_angular_app_1 || true'
+                        sh 'docker rm devopsfrontend_angular_app_1 || true'
                     } catch (Exception e) {
                         echo "Error occurred while removing old Docker containers: ${e.message}"
                         currentBuild.result = 'FAILURE'
