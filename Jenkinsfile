@@ -67,12 +67,12 @@ pipeline {
            }
         }
         
-        stage('Docker Compose') {
-           steps {
-               catchError {
-                   sh 'docker-compose up -d'
-               }
-           }
-        }
+        // stage('Docker Compose') {
+        //    steps {
+        //        catchError {
+        //            sh 'docker-compose up -d'
+        //        }
+        //    }
+        // }
     }
 }
