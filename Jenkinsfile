@@ -31,16 +31,16 @@ pipeline {
         sh 'mvn deploy -Dmaven.test.skip'
       }
     }
-        // stage('SonarQube Analysis') {
-        //     steps {
-        //         script {
-        //             withSonarQubeEnv('sonarqube') {
-        //                 sh 'mvn test jacoco:report'
-        //                 sh 'mvn sonar:sonar'
-        //             }
-        //         }
-        //     }
-        // }
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    withSonarQubeEnv('sonarqube') {
+                        sh 'mvn test jacoco:report'
+                        sh 'mvn sonar:sonar'
+                    }
+                }
+            }
+        }
      stage('Build image') {
             steps {
                 sh 'docker build -t safagrech/devops:1.0.0 .'
