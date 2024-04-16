@@ -43,7 +43,8 @@ pipeline {
         // }
      stage('Build image') {
             steps {
-                sh 'docker build -t safagrech/devops:1.0.0 .'
+                // sh 'docker build -t safagrech/devops:1.0.0 .'
+                sh('docker-compose build')
             }
         }
          stage('pushing to docker hub') {
