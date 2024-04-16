@@ -38,21 +38,21 @@ pipeline {
         //    }
         // }
         
-        // stage('Remove Old Docker Containers') {
-        //    steps {
-        //        script {
-        //            try {
-        //                 Remove the old Docker containers if they exist
-        //                sh 'docker stop frontend_angular_app_1  || true'
-        //                sh 'docker rm frontend_angular_app_1|| true'
-        //            } catch (Exception e) {
-        //                echo "Error occurred while removing old Docker containers: ${e.message}"
-        //                currentBuild.result = 'FAILURE'
-        //                error("Failed to remove old Docker containers")
-        //            }
-        //        }
-        //    }
-        // }
+        stage('Remove Old Docker Containers') {
+           steps {
+               script {
+                   try {
+                        Remove the old Docker containers if they exist
+                       sh 'docker stop frontend_angular_app_1  || true'
+                       sh 'docker rm frontend_angular_app_1|| true'
+                   } catch (Exception e) {
+                       echo "Error occurred while removing old Docker containers: ${e.message}"
+                       currentBuild.result = 'FAILURE'
+                       error("Failed to remove old Docker containers")
+                   }
+               }
+           }
+        }
         
         // stage('Docker Build and Push') {
         //    steps {
