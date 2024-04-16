@@ -1,0 +1,10 @@
+version: "3.8"
+
+services:
+  angular_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: yassine/devops_front:1.0.0
+    ports:
+      - 80:80
