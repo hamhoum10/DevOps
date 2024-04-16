@@ -13,10 +13,10 @@ services:
       - db_data:/var/lib/mysql
 
   app:
-    build: ./
     depends_on:
       - mysqldb
     image: safagrech/devops:1.0.0
+    build: ./
     restart: always
     environment:
       SPRING_APPLICATION_JSON: '{
