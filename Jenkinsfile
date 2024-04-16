@@ -38,34 +38,34 @@ pipeline {
         //    }
         // }
         
-        stage('Remove Old Docker Containers') {
-           steps {
-               script {
-                   try {
-                        Remove the old Docker containers if they exist
-                       sh 'docker stop frontend_angular_app_1  || true'
-                       sh 'docker rm frontend_angular_app_1|| true'
-                   } catch (Exception e) {
-                       echo "Error occurred while removing old Docker containers: ${e.message}"
-                       currentBuild.result = 'FAILURE'
-                       error("Failed to remove old Docker containers")
-                   }
-               }
-           }
-        }
-        
-        // stage('Docker Build and Push') {
+        // stage('Remove Old Docker Containers') {
         //    steps {
-        //        catchError {
-        //            echo 'Building Docker image...'
-        //            sh 'docker build -t yassine238/devops_frontend:latest .'
-        //            echo 'Logging in to Docker Hub...'
-        //            sh 'docker login -u yassine238 -p 75865852Ya'
-        //            echo 'Pushing Docker image to Docker Hub...'
-        //            sh 'docker push yassine238/devops_frontend:latest'
+        //        script {
+        //            try {
+        //                 Remove the old Docker containers if they exist
+        //                sh 'docker stop frontend_angular_app_1  || true'
+        //                sh 'docker rm frontend_angular_app_1|| true'
+        //            } catch (Exception e) {
+        //                echo "Error occurred while removing old Docker containers: ${e.message}"
+        //                currentBuild.result = 'FAILURE'
+        //                error("Failed to remove old Docker containers")
+        //            }
         //        }
         //    }
         // }
+        
+        stage('Docker Build and Push') {
+           steps {
+               catchError {
+                   echo 'Building Docker image...'
+                   sh 'docker build -t yassine238/devops_frontend:latest .'
+                   echo 'Logging in to Docker Hub...'
+                   sh 'docker login -u yassine238 -p 75865852Ya'
+                   echo 'Pushing Docker image to Docker Hub...'
+                   sh 'docker push yassine238/devops_frontend:latest'
+               }
+           }
+        }
         
         // stage('Docker Compose') {
         //    steps {
