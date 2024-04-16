@@ -21,19 +21,16 @@ services:
     environment:
       SPRING_APPLICATION_JSON: '{
         "spring.datasource.url": "jdbc:mysql://mysqldb:3306/devops?createDatabaseIfNotExist=true",
-            "spring.datasource.username": "root",
-            "spring.datasource.password": "",
-            "spring.jpa.hibernate.ddl-auto": "update",
-            "spring.jpa.show-sql": "true"
-          }'
-      command: --allow-public-key-retrieval=true
-
-      volumes:
-        -.m2:/root/.m2
-
+        "spring.datasource.username": "root",
+        "spring.datasource.password": "",
+        "spring.jpa.hibernate.ddl-auto": "update",
+        "spring.jpa.show-sql": "true"
+      }'
+    command: --allow-public-key-retrieval=true
+    volumes:
+      - .m2:/root/.m2
     ports:
       - 8082:8082
-
 
 volumes:
   db_data:
