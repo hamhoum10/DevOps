@@ -20,16 +20,17 @@ pipeline {
             }
         }
         
-        //stage('SonarQube analysis') {
-        //    steps {
-        //        catchError {
-        //            echo 'Running SonarQube analysis...'
-        //            withSonarQubeEnv('SonarQube_Server') {
-        //                sh 'sonar-scanner -Dsonar.projectKey=Devops -Dsonar.projectName=Devops_Project_Front -Dsonar.projectVersion=1.0.0 -Dsonar.sources=.'
-        //            }
-        //        }
-        //    }
-        //}
+        stage('SonarQube analysis') {
+           steps {
+               catchError {
+                   echo 'Running SonarQube analysis...'
+                   withSonarQubeEnv('SonarQube_Jenkins') {
+                       sh 'sonar-scanner -Dsonar.projectKey=Devops -Dsonar.projectName=Devops_Project_Front -Dsonar.projectVersion=1.0.0 -Dsonar.sources=.'
+                   }
+               }
+           }
+        }
+        
         //stage('Remove Old Docker Containers') {
         //    steps {
         //        script {
