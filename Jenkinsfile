@@ -41,19 +41,12 @@ pipeline {
         //         }
         //     }
         // }
-    stage('Building image') {
-            steps {
-                script {
-                    sh('docker-compose build')
-                }
-            }
-        }
-        stage('Build image') {
+     stage('Build image') {
             steps {
                 sh 'docker build -t safagrech/devops:1.0.0 .'
             }
         }
-        stage('pushing to docker hub') {
+         stage('pushing to docker hub') {
             steps {
                 script {
                     sh('docker login -u safagrech -p 123456789')
@@ -62,12 +55,38 @@ pipeline {
                 }
             }
         }
-         stage('Docker compose') {
+        stage('Remove Old Docker Containers') {
             steps {
-                sh 'docker compose up -d --remove-orphans '
+                script {
+                    try {
+                        // Remove the old Docker containers if they exist
+                          sh 'docker stop  devops-app mysql:8.3.0 || true'
+                          sh 'docker rm  devops-app mysql:8.3.0 || true'
+                    } catch (Exception e) {
+                        echo "Error occurred while removing old Docker containers: ${e.message}"
+                        currentBuild.result = 'FAILURE'
+                        error("Failed to remove old Docker containers")
+                    }
+                }
             }
         }
-       
+            stage('Docker Compose') {
+                        steps {
+                            sh 'docker-compose up -d'
+                        }
+                    }
+                } 
 
-    }
+                post {
+                    always {
+                        echo 'Cleaning up...'
+                        cleanWs() // Clean workspace after build
+                    }
+                    success {
+                        echo 'Build succeeded!'
+                    }
+                    failure {
+                        echo 'Build failed!'
+                    }
+                }
 }
