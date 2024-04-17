@@ -92,10 +92,7 @@
                             <goal>report</goal>
                         </goals>
                     </execution>
-                         <exclusion>
-                <groupId>ch.qos.logback</groupId>
-                <artifactId>logback-classic</artifactId>
-            </exclusion>
+                         
                 </executions>
             </plugin>
             <plugin>
