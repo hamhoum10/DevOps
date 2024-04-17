@@ -70,12 +70,7 @@
 
 
     </dependencies>
-         <exclusions> <!-- Add this section for exclusion -->
-            <exclusion>
-                <groupId>ch.qos.logback</groupId>
-                <artifactId>logback-classic</artifactId>
-            </exclusion>
-        </exclusions>
+         
     <build>
         <plugins>
 
@@ -97,6 +92,10 @@
                             <goal>report</goal>
                         </goals>
                     </execution>
+                         <exclusion>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+            </exclusion>
                 </executions>
             </plugin>
             <plugin>
