@@ -30,8 +30,8 @@ pipeline {
                 script {
                     withSonarQubeEnv('sonarqube') {
                         sh 'mvn test jacoco:report'
-                        // sh 'mvn sonar:sonar'
-                        sh "mvn sonar:sonar -Dsonar.projectKey=sonarqube -Dsonar.projectName='sonarqube'"
+                        sh 'mvn sonar:sonar'
+                        // sh "mvn sonar:sonar -Dsonar.projectKey=sonarqube -Dsonar.projectName='sonarqube'"
                     }
                 }
             }
