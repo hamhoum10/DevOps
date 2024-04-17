@@ -25,9 +25,9 @@ pipeline {
             }
         }
         stage('nexus') {
-                // steps {
+                 steps {
                 //         sh 'mvn deploy -Dmaven.test.skip'
-                // }
+                 }
             }
         
         stage('SonarQube Analysis') {
