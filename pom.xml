@@ -123,7 +123,7 @@
              <artifactId>sonar-maven-plugin</artifactId>
              <version>3.11.0.3922</version> <!-- Update this version number -->
          </plugin>
-                 <plugin>
+<!--                  <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.0</version>
@@ -149,7 +149,7 @@
                 <configuration>
                     <skipTests>true</skipTests> <!-- Change to false if you want to run tests -->
                 </configuration>
-            </plugin>
+            </plugin> -->
                   
         </plugins>
     </build>
