@@ -14,7 +14,7 @@
     <name>DevOps_Project</name>
     <description>DevOps_Project</description>
     <properties>
-        <java.version>12</java.version>
+        <java.version>11</java.version>
     </properties>
     <dependencies>
         <dependency>
