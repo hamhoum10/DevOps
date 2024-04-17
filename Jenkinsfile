@@ -26,6 +26,7 @@ pipeline {
         }
         stage('nexus') {
                  steps {
+                     echo "nexus"
                 //         sh 'mvn deploy -Dmaven.test.skip'
                  }
             }
