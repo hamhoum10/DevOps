@@ -62,11 +62,11 @@
             <scope>test</scope>
         </dependency>
              <!-- https://mvnrepository.com/artifact/org.sonarsource.scanner.maven/sonar-maven-plugin -->
-         <dependency>
+<!--          <dependency>
              <groupId>org.sonarsource.scanner.maven</groupId>
              <artifactId>sonar-maven-plugin</artifactId>
              <version>3.11.0.3922</version>
-         </dependency>
+         </dependency> -->
              <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
          <dependency>
              <groupId>org.slf4j</groupId>
