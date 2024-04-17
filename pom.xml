@@ -7,12 +7,6 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.7.13</version>
         <relativePath/> <!-- lookup parent from repository -->
-             <exclusions> <!-- Add this section for exclusion -->
-            <exclusion>
-                <groupId>ch.qos.logback</groupId>
-                <artifactId>logback-classic</artifactId>
-            </exclusion>
-        </exclusions>
     </parent>
     <groupId>tn.esprit</groupId>
     <artifactId>DevOps_Project</artifactId>
@@ -76,7 +70,12 @@
 
 
     </dependencies>
-
+         <exclusions> <!-- Add this section for exclusion -->
+            <exclusion>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+            </exclusion>
+        </exclusions>
     <build>
         <plugins>
 
